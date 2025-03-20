@@ -39,9 +39,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ko'>
+    <html lang='ko' className='overflow-x-hidden overscroll-none'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen overflow-x-hidden overscroll-none`}
+        style={{ overscrollBehavior: 'none' }}
       >
         {/* 배경 이미지 */}
         <div className='fixed inset-0 z-[-1]'>
@@ -56,10 +57,11 @@ export default function RootLayout({
           <div className='absolute inset-0 bg-blue-950/70 mix-blend-multiply' />
         </div>
 
-        {/* 헤더 추가 */}
+        {/* 헤더는 상단에 고정되어 있음 */}
         <Header />
 
-        {children}
+        {/* 메인 콘텐츠 */}
+        <div className='pt-0'>{children}</div>
       </body>
     </html>
   );
