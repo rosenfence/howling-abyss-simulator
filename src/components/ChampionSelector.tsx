@@ -23,7 +23,7 @@ export default function ChampionSelector() {
       <Button
         onClick={handleGenerateChampions}
         size='lg'
-        className='bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-xl rounded-full shadow-lg'
+        className='bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-xl rounded-full shadow-lg cursor-pointer'
       >
         무작위 챔피언 10개 선택하기
       </Button>
@@ -74,7 +74,7 @@ export default function ChampionSelector() {
               </div>
             ))}
           </div>
-          <div className='flex justify-center mt-4'>
+          <div className='flex justify-center mt-4 cursor-pointer'>
             <Button onClick={() => setIsDialogOpen(false)}>닫기</Button>
           </div>
         </DialogContent>
