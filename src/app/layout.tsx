@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import Image from 'next/image';
 import './globals.css';
 import Header from '@/components/main/Header';
+import { Analytics } from '@vercel/analytics/next';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -56,12 +57,11 @@ export default function RootLayout({
           />
           <div className='absolute inset-0 bg-blue-950/70 mix-blend-multiply' />
         </div>
-
         {/* 헤더는 상단에 고정되어 있음 */}
         <Header />
-
         {/* 메인 콘텐츠 */}
         <div className='pt-0'>{children}</div>
+        <Analytics />
       </body>
     </html>
   );
