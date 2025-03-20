@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -42,10 +43,13 @@ export default function Home() {
                 className='overflow-hidden h-full flex flex-col border-2 border-blue-300 bg-white/90'
               >
                 <div className='relative pt-[100%]'>
-                  <img
+                  <Image
                     src={champion.image}
                     alt={champion.name}
-                    className='absolute inset-0 w-full h-full object-cover'
+                    fill
+                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                    className='object-cover'
+                    priority={false}
                   />
                 </div>
                 <CardHeader className='p-3'>
@@ -65,10 +69,12 @@ export default function Home() {
               {selectedChampions.map((champion) => (
                 <div key={champion.id} className='flex flex-col items-center'>
                   <div className='relative w-full pt-[100%] rounded-md overflow-hidden'>
-                    <img
+                    <Image
                       src={champion.image}
                       alt={champion.name}
-                      className='absolute inset-0 w-full h-full object-cover'
+                      fill
+                      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw'
+                      className='object-cover'
                     />
                   </div>
                   <p className='mt-2 text-center font-medium'>{champion.name}</p>
