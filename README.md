@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 칼바람 나락 시뮬레이터
 
-## Getting Started
+이 프로젝트는 리그 오브 레전드의 칼바람 나락 모드에서 무작위 챔피언 선택을 시뮬레이션하는 웹 애플리케이션입니다. 약 170여개의 챔피언 중 무작위로 중복 없이 10개를 추출하여 보여줍니다.
 
-First, run the development server:
+## 기술 스택
+
+- [Next.js](https://nextjs.org/) - React 프레임워크 (App Router 사용)
+- [TypeScript](https://www.typescriptlang.org/) - 타입 안전성을 위한 JavaScript 확장
+- [TailwindCSS](https://tailwindcss.com/) - 유틸리티 우선 CSS 프레임워크
+- [shadcn/ui](https://ui.shadcn.com/) - 재사용 가능한 UI 컴포넌트
+
+## 주요 기능
+
+1. 무작위 챔피언 선택: 170여개 챔피언 중 중복 없이 10개 추출
+2. 선택된 챔피언 목록 표시
+3. 반응형 디자인: 모바일 및 데스크톱 환경 지원
+
+## 로컬에서 실행하기
+
+### 사전 요구사항
+
+- Node.js 18 이상
+- npm 또는 yarn
+
+### 설치 및 실행
 
 ```bash
+# 저장소 클론
+git clone https://github.com/yourusername/howling-abyss-simulator.git
+cd howling-abyss-simulator
+
+# 의존성 설치
+npm install
+# 또는
+yarn install
+
+# 개발 서버 실행
 npm run dev
-# or
+# 또는
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 [http://localhost:3000](http://localhost:3000)으로 접속하여 애플리케이션을 확인할 수 있습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 프로젝트 구조
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+howling-abyss-simulator/
+├── src/
+│   ├── app/              # Next.js App Router 파일
+│   │   ├── page.tsx      # 메인 페이지
+│   │   ├── globals.css   # 전역 스타일
+│   │   └── layout.tsx    # 레이아웃 컴포넌트
+│   ├── components/       # UI 컴포넌트
+│   │   └── ui/           # shadcn/ui 컴포넌트
+│   ├── data/             # 데이터 파일
+│   │   └── champions.ts  # 챔피언 데이터
+│   └── lib/              # 유틸리티 함수
+│       └── utils.ts      # 유틸리티 함수 (무작위 선택 등)
+├── public/               # 정적 파일
+└── package.json          # 프로젝트 의존성 및 스크립트
+```
 
-## Learn More
+## 라이선스
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
