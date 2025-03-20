@@ -74,7 +74,7 @@ export default function ChampionSelector() {
               </div>
             ))}
           </div>
-          <div className='flex justify-center mt-4 cursor-pointer'>
+          <div className='flex justify-center mt-4'>
             <Button onClick={() => setIsDialogOpen(false)}>닫기</Button>
           </div>
         </DialogContent>
