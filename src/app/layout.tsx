@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang='ko' className='overflow-x-hidden overscroll-none'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen overflow-x-hidden overscroll-none`}
+        className={`flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased relative h-screen overflow-x-hidden overscroll-none`}
         style={{ overscrollBehavior: 'none' }}
       >
         {/* 배경 이미지 */}
@@ -60,7 +60,7 @@ export default function RootLayout({
         {/* 헤더는 상단에 고정되어 있음 */}
         <Header />
         {/* 메인 콘텐츠 */}
-        <div className='pt-0'>{children}</div>
+        <div className='w-full h-full'>{children}</div>
         <Analytics />
       </body>
     </html>

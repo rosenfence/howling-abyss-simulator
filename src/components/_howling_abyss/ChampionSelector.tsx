@@ -53,10 +53,37 @@ export default function ChampionSelector() {
         </>
       )}
       {selectedChampions.length > 0 && (
-        <div className='text-center text-lg text-blue-100 mb-4'>
-          주사위 굴린 횟수 : {clickCount}
+        <div className='mt-8 flex flex-col gap-8 w-full'>
+          <div>
+            <h2 className='text-2xl font-bold text-center text-white mb-4'>1팀</h2>
+            <div className='grid grid-cols-5 gap-4'>
+              {selectedChampions.slice(0, 5).map((champion, index) => (
+                <Card
+                  key={champion.id}
+                  className='overflow-hidden h-full flex flex-col border-2 border-blue-300 bg-white/90 cursor-pointer'
+                  onClick={() => handleCardClick(index)}
+                >
+                  <div className='relative pt-[80%]'>
+                    <Image
+                      src={champion.image}
+                      alt={champion.name}
+                      fill
+                      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                      className='object-cover'
+                      priority={false}
+                    />
+                    <div className='hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 text-white text-center text-sm p-1'>
+                      {champion.name}
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
       )}
+
+      <div className='text-center text-lg text-blue-100 mb-4'>주사위 굴린 횟수 : {clickCount}</div>
       <div className='flex gap-4'>
         <Button
           onClick={handleGenerateChampions}
@@ -75,35 +102,40 @@ export default function ChampionSelector() {
         </Button>
       </div>
 
-      {isLoading && (
-        <div className='fixed inset-0 bg-white flex items-center justify-center z-50'>
-          <div className='loader'></div>
+      {selectedChampions.length > 0 && (
+        <div className='mt-8 flex flex-col gap-8 w-full'>
+          <div>
+            <h2 className='text-2xl font-bold text-center text-white mb-4'>2팀</h2>
+            <div className='grid grid-cols-5 gap-4'>
+              {selectedChampions.slice(5, 10).map((champion, index) => (
+                <Card
+                  key={champion.id}
+                  className='overflow-hidden h-full flex flex-col border-2 border-blue-300 bg-white/90 cursor-pointer'
+                  onClick={() => handleCardClick(index + 5)}
+                >
+                  <div className='relative pt-[80%]'>
+                    <Image
+                      src={champion.image}
+                      alt={champion.name}
+                      fill
+                      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                      className='object-cover'
+                      priority={false}
+                    />
+                    <div className='hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 text-white text-center text-sm p-1'>
+                      {champion.name}
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
-      {selectedChampions.length > 0 && (
-        <div className='mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full'>
-          {selectedChampions.map((champion, index) => (
-            <Card
-              key={champion.id}
-              className='overflow-hidden h-full flex flex-col border-2 border-blue-300 bg-white/90 cursor-pointer'
-              onClick={() => handleCardClick(index)}
-            >
-              <div className='relative pt-[100%]'>
-                <Image
-                  src={champion.image}
-                  alt={champion.name}
-                  fill
-                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                  className='object-cover'
-                  priority={false}
-                />
-              </div>
-              <CardHeader className='p-3'>
-                <CardTitle className='text-center text-lg'>{champion.name}</CardTitle>
-              </CardHeader>
-            </Card>
-          ))}
+      {isLoading && (
+        <div className='fixed inset-0 bg-white flex items-center justify-center z-50'>
+          <div className='loader'></div>
         </div>
       )}
     </>

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className='min-h-screen flex flex-col items-center justify-center p-4'>
+    <main className='h-full flex flex-col items-center justify-center p-4'>
       <div className='max-w-4xl w-full flex flex-col items-center gap-8'>
         <h1 className='text-5xl font-bold text-center text-white mb-2'>🔞모두롤자</h1>
         <p className='text-center text-lg text-blue-100 mb-4'>모두롤자에 오신 것을 환영합니다.</p>
