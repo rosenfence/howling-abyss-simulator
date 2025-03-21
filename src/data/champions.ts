@@ -108,8 +108,7 @@ export const champions: Champion[] = [
   {
     id: '21',
     name: '라칸',
-    image:
-      'https://i.namu.wiki/i/sjtRF2nGnw23OgIhAUL4KfIQ37VldequNS3Xchin6epfP4_BJz0YHXP4Rt5q2t8dC0L9zDvBjx5zQtBTtNLURy1DLrfF8bwV11rmqO7wI0K1Hz3rnL8cI1s1Ct_NFY1Zd-yVXARjPAls5mZ2hZDtwQ.webp',
+    image: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Rakan_0.jpg',
   },
   {
     id: '22',
@@ -594,8 +593,7 @@ export const champions: Champion[] = [
   {
     id: '118',
     name: '자야',
-    image:
-      'https://i.namu.wiki/i/eDmnEcCTUhSZ0BLQsEwOGv5pRSs_O8xr-qmjwCrO207B-jOM4M-MfraLv_LVMvCpvphN2Zybxe_I1Cc_MmtuvMxpD8QLdb5oNljd81VvbuwPdGCJfZ8TZCgXZaASzwv7ghITE3YmaUcrlgOjMoI5CQ.webp',
+    image: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Xayah_0.jpg',
   },
   {
     id: '119',
