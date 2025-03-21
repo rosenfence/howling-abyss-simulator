@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function HowlingAbyssPage() {
   return (
     <main className='h-full flex flex-col items-center p-4'>
-      <div className='max-w-4xl w-full flex flex-col items-center gap-8 relative z-10'>
+      <div className='max-w-4xl w-full h-full flex flex-col items-center gap-8 relative z-10'>
         <ChampionSelector />
       </div>
     </main>
