@@ -28,6 +28,7 @@ export default function ChampionSelector() {
   const [isUnlimited1, setIsUnlimited1] = useState(true);
   const [isUnlimited2, setIsUnlimited2] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   const handleReset = () => {
     setSelectedChampions([]);
@@ -180,12 +181,28 @@ export default function ChampionSelector() {
     setIsModalOpen(false);
   };
 
+  const handleHelpModalOpen = () => {
+    setIsHelpModalOpen(true);
+  };
+
+  const handleHelpModalClose = () => {
+    setIsHelpModalOpen(false);
+  };
+
   return (
     <div className='w-full h-full' onContextMenu={(e) => e.preventDefault()}>
       <Modal isOpen={isModalOpen} onRequestClose={handleModalClose}>
         <div className='flex flex-col gap-4 mb-4'>
           <h2 className='text-xl font-bold'>알림</h2>
           <p>더 이상 선택할 수 있는 챔피언이 없습니다.</p>
+        </div>
+      </Modal>
+      <Modal isOpen={isHelpModalOpen} onRequestClose={handleHelpModalClose}>
+        <div className='flex flex-col gap-4 mb-4 min-w-[500px]'>
+          <h2 className='text-xl font-bold'>도움말</h2>
+          <p>1. 챔피언 카드를 클릭하면 주사위를 소모하여 새로운 챔피언을 선택할 수 있습니다.</p>
+          <p>2. 챔피언 카드를 우클릭하면 대기 리스트에 있는 챔피언과 교체할 수 있습니다.</p>
+          <p>3. 주사위 갯수는 챔피언 픽 이전에 설정할 수 있습니다.</p>
         </div>
       </Modal>
       {selectedChampions.length === 0 && (
@@ -263,15 +280,27 @@ export default function ChampionSelector() {
           size='lg'
           className='bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-xl rounded-full shadow-lg cursor-pointer'
         >
-          {selectedChampions.length === 0 ? '무작위 챔피언 10개 선택하기' : '다시 선택하기'}
+          {selectedChampions.length === 0 ? '무작위 챔피언 픽' : '다시 선택하기'}
         </Button>
 
+        {selectedChampions.length > 0 && (
+          <>
+            <Button
+              onClick={handleReset}
+              size='lg'
+              className='bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-xl rounded-full shadow-lg cursor-pointer'
+            >
+              처음으로
+            </Button>
+          </>
+        )}
+
         <Button
-          onClick={handleReset}
+          onClick={handleHelpModalOpen}
           size='lg'
-          className='bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-xl rounded-full shadow-lg cursor-pointer'
+          className='bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-xl rounded-full shadow-lg cursor-pointer'
         >
-          처음으로
+          도움말
         </Button>
       </div>
 
