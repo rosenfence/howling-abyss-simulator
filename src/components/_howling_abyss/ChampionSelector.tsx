@@ -9,7 +9,9 @@ import { getRandomChampions } from '@/functions';
 import { Input } from '@/components/ui/input';
 import Modal from '@/components/ui/Modal';
 
+// This component manages the selection and display of champions for two teams.
 export default function ChampionSelector() {
+  // State variables to manage selected champions, loading state, click counts, waiting lists, and modals.
   const [selectedChampions, setSelectedChampions] = useState<typeof champions>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [team1ClickCount, setTeam1ClickCount] = useState(0);
@@ -30,6 +32,7 @@ export default function ChampionSelector() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
+  // Resets the state to initial values.
   const handleReset = () => {
     setSelectedChampions([]);
     setTeam1ClickCount(0);
@@ -38,17 +41,21 @@ export default function ChampionSelector() {
     setWaitingList2(new Set());
   };
 
+  // Generates a new set of random champions.
   const handleGenerateChampions = () => {
     setIsLoading(true);
     const randomChampions = getRandomChampions(champions, 10);
     setSelectedChampions(randomChampions);
     setTeam1ClickCount(0);
     setTeam2ClickCount(0);
+    setWaitingList1(new Set());
+    setWaitingList2(new Set());
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
   };
 
+  // Handles the click event on a champion card.
   const handleCardClick = (index: number, team: number) => {
     if (selectedChampions.length + waitingList1.size + waitingList2.size >= champions.length) {
       setIsModalOpen(true);
@@ -89,6 +96,7 @@ export default function ChampionSelector() {
     }
   };
 
+  // Handles the right-click event on a champion card to show the context menu.
   const handleCardRightClick = (event: React.MouseEvent, index: number, team: number) => {
     event.preventDefault();
     const waitingList = team === 1 ? Array.from(waitingList1) : Array.from(waitingList2);
@@ -119,6 +127,7 @@ export default function ChampionSelector() {
     });
   };
 
+  // Displays the context menu at the mouse position.
   const showContextMenu = (
     event: React.MouseEvent,
     items: string[],
@@ -149,10 +158,12 @@ export default function ChampionSelector() {
     });
   };
 
+  // Closes the context menu.
   const handleContextMenuClose = () => {
     setContextMenu(null);
   };
 
+  // Handles changes to the maximum number of dice.
   const handleMaxDiceChange = (
     value: string,
     setMaxDice: React.Dispatch<React.SetStateAction<string | number>>
@@ -165,32 +176,38 @@ export default function ChampionSelector() {
     }
   };
 
+  // Calculates the remaining dice for a team.
   const getRemainingDice = (maxDice: string | number, clickCount: number, isUnlimited: boolean) => {
     if (isUnlimited) return '제한 없음';
     if (typeof maxDice === 'number') return Math.max(0, maxDice - clickCount);
     return maxDice;
   };
 
+  // Closes the modal.
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
 
+  // Opens the help modal.
   const handleHelpModalOpen = () => {
     setIsHelpModalOpen(true);
   };
 
+  // Closes the help modal.
   const handleHelpModalClose = () => {
     setIsHelpModalOpen(false);
   };
 
   return (
     <div className='w-full h-full' onContextMenu={(e) => e.preventDefault()}>
+      {/* Modal for notifying no more champions can be selected */}
       <Modal isOpen={isModalOpen} onRequestClose={handleModalClose}>
         <div className='flex flex-col gap-4 mb-4'>
           <h2 className='text-xl font-bold'>알림</h2>
           <p>더 이상 선택할 수 있는 챔피언이 없습니다.</p>
         </div>
       </Modal>
+      {/* Help modal with instructions */}
       <Modal isOpen={isHelpModalOpen} onRequestClose={handleHelpModalClose}>
         <div className='flex flex-col gap-4 mb-4 min-w-[500px]'>
           <h2 className='text-xl font-bold'>도움말</h2>
@@ -201,6 +218,7 @@ export default function ChampionSelector() {
       </Modal>
       {selectedChampions.length === 0 && (
         <>
+          {/* Title and description when no champions are selected */}
           <h1
             className={`text-5xl font-bold text-center text-white mb-2 ${
               selectedChampions.length === 0 ? 'mt-20' : ''
@@ -212,6 +230,7 @@ export default function ChampionSelector() {
             총 {champions.length}개의 챔피언 중 무작위로 10개를 추출합니다. <br />
             당신의 운명의 챔피언은 누구일까요?
           </p>
+          {/* Input fields for setting dice limits */}
           <div className='flex flex-col items-center gap-4 mb-4'>
             <div className='flex items-center gap-2'>
               <label htmlFor='maxDice1' className='text-white'>
@@ -269,6 +288,7 @@ export default function ChampionSelector() {
           selectedChampions.length === 0 ? 'justify-center' : 'justify-end'
         } gap-4`}
       >
+        {/* Button to generate or reset champions */}
         <Button
           onClick={handleGenerateChampions}
           size='lg'
@@ -289,6 +309,7 @@ export default function ChampionSelector() {
           </>
         )}
 
+        {/* Button to open the help modal */}
         <Button
           onClick={handleHelpModalOpen}
           size='lg'
@@ -301,6 +322,7 @@ export default function ChampionSelector() {
       {selectedChampions.length > 0 && (
         <div className='flex flex-col gap-8 w-full mt-4'>
           <div>
+            {/* Display for team 1 */}
             <h2 className='text-2xl font-bold text-center text-white mb-4'>1팀</h2>
             <div className='text-center text-lg text-blue-100 mb-4'>
               1팀 챔피언 대기 리스트: {Array.from(waitingList1).join(', ')}
@@ -342,6 +364,7 @@ export default function ChampionSelector() {
       {selectedChampions.length > 0 && (
         <div className='flex flex-col gap-8 w-full'>
           <div>
+            {/* Display for team 2 */}
             <h2 className='text-2xl font-bold text-center text-white mb-4'>2팀</h2>
             <div className='text-center text-lg text-blue-100 mb-4'>
               2팀 챔피언 대기 리스트: {Array.from(waitingList2).join(', ')}
