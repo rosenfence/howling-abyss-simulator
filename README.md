@@ -46,19 +46,39 @@ yarn dev
 
 ```
 howling-abyss-simulator/
-├── src/
-│   ├── app/              # Next.js App Router 파일
-│   │   ├── page.tsx      # 메인 페이지
-│   │   ├── globals.css   # 전역 스타일
-│   │   └── layout.tsx    # 레이아웃 컴포넌트
-│   ├── components/       # UI 컴포넌트
-│   │   └── ui/           # shadcn/ui 컴포넌트
-│   ├── data/             # 데이터 파일
-│   │   └── champions.ts  # 챔피언 데이터
-│   └── lib/              # 유틸리티 함수
-│       └── utils.ts      # 유틸리티 함수 (무작위 선택 등)
-├── public/               # 정적 파일
-└── package.json          # 프로젝트 의존성 및 스크립트
+├── public/              # 정적 파일
+├── src/                 # 소스 코드
+│   ├── app/             # Next.js App Router 파일
+│   │   ├── page.tsx     # 메인 페이지
+│   │   ├── layout.tsx   # 레이아웃 컴포넌트
+│   │   ├── globals.css  # 전역 스타일
+│   │   └── howling-abyss/ # 칼바람 나락 시뮬레이터
+│   ├── components/      # UI 컴포넌트
+│   │   ├── ui/          # 재사용 가능한 shadcn/ui 컴포넌트
+│   │   │   ├── Modal.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── dropdown-menu.tsx
+│   │   │   └── card.tsx
+│   │   ├── _howling_abyss/ # 칼바람 나락 페이지 컴포넌트
+│   │   │   └── ChampionSelector.tsx
+│   │   └── _main/       # 메인 페이지 컴포넌트
+│   ├── data/            # 데이터 파일
+│   │   └── champions.ts # 챔피언 데이터
+│   ├── functions/       # 함수 모음
+│   └── lib/             # 유틸리티 함수
+│       └── utils.ts     # 유틸리티 함수 (무작위 선택 등)
+├── .gitignore           # Git 무시 파일 목록
+├── components.json      # 컴포넌트 설정 파일
+├── eslint.config.mjs    # ESLint 설정 파일
+├── next-env.d.ts        # Next.js 환경 타입 선언
+├── next.config.ts       # Next.js 설정 파일
+├── package-lock.json    # npm 의존성 잠금 파일
+├── package.json         # 프로젝트 의존성 및 스크립트
+├── postcss.config.mjs   # PostCSS 설정 파일
+├── README.md            # README
+└── tsconfig.json        # TypeScript 설정 파일
 ```
 
 ## 라이선스
