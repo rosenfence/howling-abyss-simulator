@@ -91,14 +91,9 @@ export default function ChampionSelector() {
 
   const handleCardRightClick = (event: React.MouseEvent, index: number, team: number) => {
     event.preventDefault();
-    // Show context menu with the waiting list for the respective team
     const waitingList = team === 1 ? Array.from(waitingList1) : Array.from(waitingList2);
-    const selectedChampion = selectedChampions[index];
 
-    // Display context menu logic here
-    // For simplicity, let's assume we have a function `showContextMenu` that takes the event, waiting list, and a callback
     showContextMenu(event, waitingList, (selectedFromWaitingList) => {
-      // Swap the selected champion with the one from the waiting list
       setSelectedChampions((prev) => {
         const updated = [...prev];
         const removedChampion = updated[index];
@@ -132,13 +127,12 @@ export default function ChampionSelector() {
     event.preventDefault();
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    const menuWidth = 150; // Assume a fixed width for the context menu
-    const menuHeight = Math.min(items.length, 10) * 40; // Adjust height based on visible items
+    const menuWidth = 150;
+    const menuHeight = Math.min(items.length, 10) * 40;
 
     let x = event.clientX;
     let y = event.clientY;
 
-    // Adjust x and y to ensure the menu stays within the viewport
     if (x + menuWidth > viewportWidth) {
       x = viewportWidth - menuWidth;
     }
